@@ -1,0 +1,543 @@
+/* Основные стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #1e2039;
+    --secondary-color: #ff6b4a;
+    --accent-color: #4e7cff;
+    --background-color: #0f1123;
+    --card-bg: #1a1c34;
+    --text-color: #ffffff;
+    --text-secondary: #b8c1ec;
+    --button-radius: 30px;
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    --transition: all 0.3s ease;
+    --glow: 0 0 15px rgba(78, 124, 255, 0.6);
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-image: radial-gradient(circle at top right, #1e2753 0%, var(--background-color) 70%);
+    overflow-x: hidden;
+}
+
+/* Hero секция */
+.hero {
+    height: 40vh;
+    min-height: 300px;
+    background-image: linear-gradient(135deg, rgba(14, 17, 35, 0.9), rgba(30, 32, 57, 0.8)), 
+                      url('https://images.unsplash.com/photo-1518218119019-7a0b7e8e457c?w=1200&auto=format&fit=crop');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, var(--accent-color), transparent);
+    opacity: 0.15;
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+    padding: 20px;
+}
+
+.game-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #ff6b4a, #ff4a8d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 2px 10px rgba(255, 107, 74, 0.3);
+}
+
+.game-subtitle {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px;
+    padding: 40px 20px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 30px;
+    position: relative;
+    padding-bottom: 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.section-title::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: var(--secondary-color);
+    border-radius: 2px;
+}
+
+.games-section, .cta-section {
+    width: 100%;
+}
+
+/* Карточки игр */
+.images-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    width: 100%;
+}
+
+.game-card {
+    flex: 1 1 350px;
+    max-width: 500px;
+    height: 300px;
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    cursor: pointer;
+    border: 2px solid rgba(78, 124, 255, 0.2);
+}
+
+.game-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--glow), var(--shadow);
+    border: 2px solid var(--accent-color);
+}
+
+.game-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 25px;
+    background: linear-gradient(to top, rgba(15, 17, 35, 0.95), rgba(15, 17, 35, 0.6) 60%, transparent);
+    color: white;
+    z-index: 2;
+    transition: var(--transition);
+}
+
+.game-card:hover .game-overlay {
+    padding-bottom: 35px;
+    background: linear-gradient(to top, rgba(15, 17, 35, 0.98), rgba(15, 17, 35, 0.8) 70%, rgba(15, 17, 35, 0.4));
+}
+
+.game-overlay h3 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+}
+
+.game-overlay p {
+    font-size: 0.95rem;
+    opacity: 0.8;
+}
+
+.promo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.game-card:hover .promo-image {
+    transform: scale(1.1);
+}
+
+/* CTA секция */
+.cta-section {
+    text-align: center;
+    padding: 40px 0;
+}
+
+.cta-text {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 30px;
+}
+
+/* Стили для контейнера с кнопками */
+.buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px 30px;
+    border-radius: var(--button-radius);
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    transition: var(--transition);
+    min-width: 260px;
+    box-shadow: var(--shadow);
+    gap: 12px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    text-transform: uppercase;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.1), transparent);
+    z-index: -1;
+}
+
+.telegram-btn {
+    background: linear-gradient(135deg, #0088cc, #0072a9);
+    color: white;
+}
+
+.telegram-btn:hover {
+    background: linear-gradient(135deg, #0099e6, #0088cc);
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 136, 204, 0.4);
+}
+
+.play-btn {
+    background: linear-gradient(135deg, var(--secondary-color), #ff3c1e);
+    color: white;
+}
+
+.play-btn:hover {
+    background: linear-gradient(135deg, #ff7d62, var(--secondary-color));
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(255, 107, 74, 0.4);
+}
+
+.btn-icon {
+    font-size: 1.3rem;
+}
+
+/* Features секция */
+.features-section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    width: 100%;
+}
+
+.feature {
+    flex: 1 1 250px;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 25px;
+    border-radius: 16px;
+    background-color: var(--card-bg);
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(78, 124, 255, 0.1);
+}
+
+.feature:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--glow), var(--shadow);
+    border: 1px solid rgba(78, 124, 255, 0.3);
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 50%;
+    background: rgba(78, 124, 255, 0.1);
+}
+
+.feature h4 {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+/* Footer */
+.footer {
+    margin-top: auto;
+    background-color: var(--primary-color);
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .game-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero {
+        height: 30vh;
+    }
+    
+    .container {
+        padding: 30px 15px;
+        gap: 50px;
+    }
+    
+    .game-card {
+        max-width: 100%;
+        height: 250px;
+    }
+    
+    .game-overlay h3 {
+        font-size: 1.5rem;
+    }
+    
+    .buttons-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+    
+    .section-title {
+        font-size: 1.7rem;
+    }
+}
+
+/* Адаптивность для очень маленьких экранов */
+@media (max-width: 480px) {
+    .game-title {
+        font-size: 2rem;
+    }
+    
+    .game-subtitle {
+        font-size: 1rem;
+    }
+    
+    .feature {
+        padding: 20px 15px;
+    }
+    
+    .feature-icon {
+        font-size: 2rem;
+    }
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); box-shadow: var(--shadow); }
+    50% { transform: scale(1.03); box-shadow: var(--glow), var(--shadow); }
+    100% { transform: scale(1); box-shadow: var(--shadow); }
+}
+
+.game-card, .btn, .feature {
+    animation: fadeIn 0.8s ease forwards;
+}
+
+.game-card:nth-child(1) {
+    animation-delay: 0.2s;
+}
+
+.game-card:nth-child(2) {
+    animation-delay: 0.4s;
+}
+
+.telegram-btn {
+    animation-delay: 0.6s;
+}
+
+.play-btn {
+    animation-delay: 0.8s;
+    animation: pulse 3s infinite, fadeIn 0.8s ease forwards 0.8s;
+}
+
+.feature:nth-child(1) {
+    animation-delay: 1s;
+}
+
+.feature:nth-child(2) {
+    animation-delay: 1.2s;
+}
+
+.feature:nth-child(3) {
+    animation-delay: 1.4s;
+}
+
+/* Специальные эффекты для определенных игр */
+#aviator {
+    background: linear-gradient(to bottom, rgba(15, 17, 35, 0.5), rgba(15, 17, 35, 0.9)), 
+                radial-gradient(circle at top right, rgba(78, 124, 255, 0.4), transparent 70%);
+}
+
+#mines {
+    background: linear-gradient(to bottom, rgba(15, 17, 35, 0.5), rgba(15, 17, 35, 0.9)), 
+                radial-gradient(circle at bottom left, rgba(255, 107, 74, 0.4), transparent 70%);
+} 
+
+/* Частицы для эффекта "Авиамастер" */
+.particle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 2;
+    animation: floatParticle 4s infinite ease-in-out;
+}
+
+@keyframes floatParticle {
+    0% { transform: translateY(0) translateX(0); opacity: 0; }
+    25% { opacity: 0.8; }
+    75% { opacity: 0.6; }
+    100% { transform: translateY(-100px) translateX(20px); opacity: 0; }
+}
+
+/* Эффект свечения для карточек */
+.card-glow {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(78, 124, 255, 0.6) 0%, rgba(78, 124, 255, 0) 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    animation: moveGlow 3s infinite alternate ease-in-out;
+}
+
+@keyframes moveGlow {
+    0% { transform: translate(-25%, -25%); }
+    100% { transform: translate(25%, 25%); }
+}
+
+.game-card:hover .card-glow {
+    opacity: 1;
+}
+
+/* Дополнительные эффекты для кнопок */
+.btn-hover {
+    box-shadow: 0 0 20px rgba(78, 124, 255, 0.7);
+}
+
+/* Анимация для героя */
+.hero-content {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.hero-content.animated {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Анимация для элементов при скролле */
+.feature, .cta-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.feature.visible, .cta-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.feature:nth-child(1).visible {
+    transition-delay: 0.2s;
+}
+
+.feature:nth-child(2).visible {
+    transition-delay: 0.4s;
+}
+
+.feature:nth-child(3).visible {
+    transition-delay: 0.6s;
+}
+
+/* Специфический стиль для игры Авиамастер */
+#aviator .game-overlay {
+    background: linear-gradient(to top, rgba(15, 17, 35, 0.9), rgba(15, 17, 35, 0.5) 60%, transparent);
+}
+
+#aviator .game-overlay h3 {
+    color: #4e7cff;
+    text-shadow: 0 0 10px rgba(78, 124, 255, 0.5);
+}
+
+/* Специфический стиль для игры Мины */
+#mines .game-overlay {
+    background: linear-gradient(to top, rgba(15, 17, 35, 0.9), rgba(15, 17, 35, 0.5) 60%, transparent);
+}
+
+#mines .game-overlay h3 {
+    color: var(--secondary-color);
+    text-shadow: 0 0 10px rgba(255, 107, 74, 0.5);
+} 
